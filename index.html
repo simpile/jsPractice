@@ -2,16 +2,74 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>jsPractice</title>
+  <title>jsPractice</title>
 
-    <style>
-        .myContainer {
+  <style>
+
+    /* DARK MODE STYLES */
+    .switch input {
+      display: none;
+    }
+
+    .switch {
+      display: inline-block;
+      width: 60px;
+      /*=w*/
+      height: 30px;
+      /*=h*/
+      margin: 4px;
+      transform: translateY(50%);
+      position: relative;
+    }
+
+    .slider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 30px;
+      box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+      cursor: pointer;
+      border: 4px solid transparent;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: #777;
+      border-radius: 30px;
+      transform: translateX(-30px);
+      /*translateX(-(w-h))*/
+      transition: 0.2s;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(30px);
+      /*translateX(w-h)*/
+      background-color: #0dcaf0;
+    }
+
+    input:checked+.slider {
+      box-shadow: 0 0 0 2px #0dcaf0, 0 0 8px #0dcaf0;
+    }
+
+    .myLightMode {
+      background-color: #000;
+      color: #fff;
+    }
+/* NUMBER PART STYLES */
+    .myContainer {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -21,124 +79,68 @@
         input{
             padding-left: 15px;
         }
-        .switch input
-{
-  display: none;
-}
 
-.switch 
-{
-  display: inline-block;
-  width: 60px; /*=w*/
-  height: 30px; /*=h*/
-  margin: 4px;
-  transform: translateY(50%);
-  position: relative;
-}
-
-.slider
-{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-radius: 30px;
-  box-shadow: 0 0 0 2px #777, 0 0 4px #777;
-  cursor: pointer;
-  border: 4px solid transparent;
-  overflow: hidden;
-  transition: 0.2s;
-}
-
-.slider:before
-{
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: #777;
-  border-radius: 30px;
-  transform: translateX(-30px); /*translateX(-(w-h))*/
-  transition: 0.2s;
-}
-
-input:checked + .slider:before
-{
-  transform: translateX(30px); /*translateX(w-h)*/
-  background-color: limeGreen;
-}
-
-input:checked + .slider
-{
-  box-shadow: 0 0 0 2px limeGreen, 0 0 8px limeGreen;
-}
-
-
-        .myLightMode{
-background-color: #000;
-color: #fff;
-        }
-    </style>
+  </style>
 </head>
 
-<body >
-    <div >
-        <label  class="switch">
-          <input onclick="myChangeMode()" type="checkbox">
-          <span  class="slider"></span>
-        </label> change mode
-      </div>
+<body>
 
-    <div class="myContainer">
-        <h1>Even Or Odd?</h1>
-        <div class="d-flex m-5">
-            <input id="myNumber"  placeholder="add your number">
-            <button id="myBtn" class="btn btn-info text-light" onclick="myDetect()">even or odd?</button>
-        </div>
+  <!-- MODE PART -->
+  <div>
+    <label class="switch">
+      <input onclick="myChangeMode()" type="checkbox">
+      <span class="slider"></span>
+    </label> change mode
+  </div>
+  <!-- MAIN PART -->
+  <div class="myContainer">
+    <h1>Even Or Odd?</h1>
+    <div class="d-flex m-5">
+      <input id="myNumber" placeholder="add your number">
+      <button id="myBtn" class="btn btn-info text-light" onclick="myDetect()">even or odd?</button>
     </div>
+  </div>
 
 
-    <script>
+  <script>
 
-        function myDetect() {
-            
-            var myNumber = document.getElementById("myNumber").value
-            var x = Number(myNumber) % 2
+    function myDetect() {
 
-            if ( input.value !== "" && x == 0 ) {
-                alert(myNumber + "  it's an even number");
+      var myNumber = document.getElementById("myNumber").value
+      var x = Number(myNumber) % 2
 
-            }
-            else
-            if(input.value == "" ){
-                alert( "please add your number")
-            }
-            else
-            {
-                alert(myNumber + "   it's an odd number");
-            }
-            document.getElementById("myNumber").value = ""
+      if (input.value !== "" && x == 0) {
+        alert(myNumber + "  it's an even number");
+
+      }
+      else
+        if (input.value == "") {
+          alert("please add your number")
         }
+        else {
+          alert(myNumber + "   it's an odd number");
+        }
+      document.getElementById("myNumber").value = ""
+    }
 
-        // submit with enter key
-        var input = document.getElementById("myNumber");
-        input.addEventListener("keyup", function (event) {
-       // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode === 13  && input.value !== "") {
-                document.getElementById("myBtn").click();
-            }
-        });
+    // submit with enter key
+    var input = document.getElementById("myNumber");
+    input.addEventListener("keyup", function (event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13 && input.value !== "") {
+        document.getElementById("myBtn").click();
+      }
+    });
 
-        // darkmode
+    // darkmode
 
-        function myChangeMode() {
-           
-   var element = document.body;
-   element.classList.toggle("myLightMode");
-}
+    function myChangeMode() {
 
-    </script>
+      var element = document.body;
+      element.classList.toggle("myLightMode");
+    }
+
+  </script>
 </body>
 
 </html>
